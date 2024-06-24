@@ -31,7 +31,7 @@ public class Book implements Serializable {
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
-    @ManyToMany
+    @ManyToMany()
     @JoinTable(name = "tb_book_author",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id"))

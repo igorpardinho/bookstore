@@ -46,5 +46,16 @@ public class AuthorController {
         return ResponseEntity.status(HttpStatus.OK).body(authorRepository.save(author));
     }
 
+    @DeleteMapping("/authors/{id}")
+    public ResponseEntity<Object> deleteAuthor(@PathVariable(value = "id") UUID id){
+        Optional<Author> optionalAuthor = authorRepository.findById(id);
+        if (optionalAuthor.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Author not found");
+        }
+        Author author = optionalAuthor.get();
+         authorRepository.delete(author);
+         return ResponseEntity.status(HttpStatus.OK).body("Deletado com sucesso");
+    }
+
 
 }
